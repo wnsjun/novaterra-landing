@@ -1,4 +1,8 @@
+import { useLanguage } from '../context/LanguageContext'
+
 export default function Footer() {
+  const { t } = useLanguage()
+
   return (
     <footer className="border-t border-gray-200 bg-gray-50 py-12">
       <div className="max-w-7xl mx-auto px-6">
@@ -15,9 +19,7 @@ export default function Footer() {
             </span>
           </div>
 
-          <div className="text-sm text-gray-400 text-center">
-            블록체인 기반 부동산 증권 투자 플랫폼 · Built on GIWA Chain
-          </div>
+          <div className="text-sm text-gray-400 text-center">{t.footer.tagline}</div>
 
           <div className="flex items-center gap-3 text-xs text-gray-400">
             {['ERC-3643', 'ONCHAINID', 'Solidity', 'React'].map((tech, i, arr) => (

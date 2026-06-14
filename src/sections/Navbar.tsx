@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react'
+import { useLanguage } from '../context/LanguageContext'
+import type { Lang } from '../i18n/translations'
 
-const links = [
-  { href: '#problems', label: '문제점' },
-  { href: '#solutions', label: '솔루션' },
-  { href: '#how-it-works', label: '작동 방식' },
-  { href: '#architecture', label: '아키텍처' },
-]
+const HREFS = ['#problems', '#solutions', '#how-it-works', '#architecture']
 
 export default function Navbar() {
+  const { lang, t, setLang } = useLanguage()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
 
@@ -26,6 +24,7 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        {/* Logo */}
         <a href="#" className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-purple-700 flex items-center justify-center flex-shrink-0">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -38,52 +37,94 @@ export default function Navbar() {
           </span>
         </a>
 
+        {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">
-          {links.map(l => (
+          {t.navbar.links.map((label, i) => (
             <a
-              key={l.href}
-              href={l.href}
+              key={HREFS[i]}
+              href={HREFS[i]}
               className="text-sm text-gray-500 hover:text-gray-900 transition-colors font-medium"
             >
-              {l.label}
+              {label}
             </a>
           ))}
         </div>
 
-        <a
-          href="https://www.hongiknovaterra.store"
-          target="_blank"
-          rel="noreferrer"
-          className="hidden md:inline-flex items-center gap-1.5 px-4 py-2 bg-violet-600 hover:bg-violet-700 text-white rounded-lg text-sm font-semibold transition-colors"
-        >
-          웹 바로가기 →
-        </a>
+        {/* Right: lang toggle + CTA */}
+        <div className="hidden md:flex items-center gap-3">
+          {/* Language toggle */}
+          <div className="flex items-center bg-gray-100 rounded-lg p-0.5 text-sm font-semibold">
+            {(['ko', 'en'] as Lang[]).map((l) => (
+              <button
+                key={l}
+                onClick={() => setLang(l)}
+                className={`px-3 py-1.5 rounded-md transition-all duration-200 ${
+                  lang === l
+                    ? 'bg-white text-gray-900 shadow-sm'
+                    : 'text-gray-400 hover:text-gray-600'
+                }`}
+              >
+                {l.toUpperCase()}
+              </button>
+            ))}
+          </div>
 
-        <button
-          className="md:hidden p-2 text-gray-500 hover:text-gray-900"
-          onClick={() => setOpen(!open)}
-        >
-          <span className="text-xl">{open ? '✕' : '☰'}</span>
-        </button>
+          <a
+            href="https://www.hongiknovaterra.store"
+            target="_blank"
+            rel="noreferrer"
+            className="px-4 py-2 bg-violet-600 hover:bg-violet-700 text-white rounded-lg text-sm font-semibold transition-colors"
+          >
+            {t.navbar.cta}
+          </a>
+        </div>
+
+        {/* Mobile: lang toggle + hamburger */}
+        <div className="md:hidden flex items-center gap-2">
+          <div className="flex items-center bg-gray-100 rounded-lg p-0.5 text-xs font-semibold">
+            {(['ko', 'en'] as Lang[]).map((l) => (
+              <button
+                key={l}
+                onClick={() => setLang(l)}
+                className={`px-2.5 py-1 rounded-md transition-all duration-200 ${
+                  lang === l
+                    ? 'bg-white text-gray-900 shadow-sm'
+                    : 'text-gray-400 hover:text-gray-600'
+                }`}
+              >
+                {l.toUpperCase()}
+              </button>
+            ))}
+          </div>
+          <button
+            className="p-2 text-gray-500 hover:text-gray-900"
+            onClick={() => setOpen(!open)}
+          >
+            <span className="text-xl">{open ? '✕' : '☰'}</span>
+          </button>
+        </div>
       </div>
 
+      {/* Mobile menu */}
       {open && (
         <div className="md:hidden bg-white border-b border-gray-200 px-6 pb-4 shadow-lg">
-          {links.map(l => (
+          {t.navbar.links.map((label, i) => (
             <a
-              key={l.href}
-              href={l.href}
+              key={HREFS[i]}
+              href={HREFS[i]}
               onClick={() => setOpen(false)}
               className="block py-3 text-sm text-gray-600 hover:text-gray-900 border-b border-gray-100 last:border-0 transition-colors font-medium"
             >
-              {l.label}
+              {label}
             </a>
           ))}
           <a
-            href="#"
+            href="https://www.hongiknovaterra.store"
+            target="_blank"
+            rel="noreferrer"
             className="mt-4 w-full flex justify-center py-2.5 bg-violet-600 hover:bg-violet-700 text-white rounded-lg text-sm font-semibold transition-colors"
           >
-            웹 바로가기 →
+            {t.navbar.cta}
           </a>
         </div>
       )}
