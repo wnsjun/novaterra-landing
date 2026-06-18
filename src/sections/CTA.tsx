@@ -31,7 +31,7 @@ export default function CTA() {
             {c.ctaPrimary}
           </a>
           <a
-            href="https://github.com"
+            href="https://github.com/Capstone-Design-Hongik/Nova-Terra"
             target="_blank"
             rel="noreferrer"
             className="px-8 py-4 border-2 border-white/40 hover:border-white/70 text-white rounded-xl font-bold text-lg transition-all hover:bg-white/10"
