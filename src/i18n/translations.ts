@@ -12,7 +12,7 @@ const ko = {
     h1_3: '가 되세요',
     sub: 'NovaTerra는 블록체인으로 누구나 소액으로 프리미엄 부동산에 투자할 수 있는 플랫폼입니다. 투명한 온체인 수익 분배와 직접적인 의사결정 참여로 진정한 건물주가 되세요.',
     ctaPrimary: '지금 투자 시작하기',
-    ctaSecondary: '작동 방식 보기 →',
+    ctaSecondary: '프로젝트 소개 영상 보러가기 →',
     stats: [
       { value: '₩10,000', label: '최소 투자 금액' },
       { value: '100%', label: '온체인 투명성' },
@@ -208,7 +208,7 @@ const en: typeof ko = {
     h1_3: 'for the price of a coffee',
     sub: 'NovaTerra leverages blockchain to let anyone invest in premium real estate from just ₩10,000. Experience transparent on-chain dividend distribution and direct governance rights.',
     ctaPrimary: 'Start Investing Now',
-    ctaSecondary: 'See How It Works →',
+    ctaSecondary: 'Watch the Project Introduction Video →',
     stats: [
       { value: '₩10,000', label: 'Min. Investment' },
       { value: '100%', label: 'On-Chain Transparency' },

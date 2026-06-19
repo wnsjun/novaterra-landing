@@ -41,7 +41,9 @@ export default function Hero() {
               {h.ctaPrimary}
             </a>
             <a
-              href="#how-it-works"
+              href="https://youtu.be/Ie12me_aVuc?si=vIAaBUSajoUWi3O-"
+              target="_blank"
+              rel="noreferrer"
               className="px-6 py-3.5 border border-gray-200 hover:border-violet-300 rounded-xl font-semibold transition-all text-gray-700 hover:text-violet-600 bg-white hover:bg-violet-50"
             >
               {h.ctaSecondary}
